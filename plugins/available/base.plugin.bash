@@ -39,41 +39,13 @@ function pmdown() {
   fi
 }
 
-# Make a directory and immediately 'cd' into it
-
-function mkcd() {
-  mkdir -p "$*"
-  cd "$*"
-}
-
-# Search through directory contents with grep
-
-function lsgrep(){
-  ls | grep "$*"
-}
-
-# View man documentation in Preview
-pman () {
-   man -t "${1}" | open -f -a $PREVIEW
-}
-
 
 pcurl() {
-  curl "${1}" | open -f -a $PREVIEW
-}
-
-pri() {
-  ri -T "${1}" | open -f -a $PREVIEW
+  curl "${1}" | gnome-open -f -a $PREVIEW
 }
 
 quiet() {
 	$* &> /dev/null &
-}
-
-banish-cookies() {
-	rm -r ~/.macromedia ~/.adobe
-	ln -s /dev/null ~/.adobe
-	ln -s /dev/null ~/.macromedia
 }
 
 # disk usage per directory
@@ -94,20 +66,6 @@ usage ()
             du -h --max-depth=1
         fi
     fi
-}
-
-# One thing todo
-function t() {
-	 if [[ "$*" == "" ]] ; then
-		 cat ~/.t
-	 else
-		 echo "$*" > ~/.t
-	 fi
-}
-
-# Checks for existence of a command
-command_exists () {
-    type "$1" &> /dev/null ;
 }
 
 # List all plugins and functions defined by bash-it
